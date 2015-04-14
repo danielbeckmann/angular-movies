@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html ng-app="moviesApp">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Movies Application</title>
+
+    <!-- Basic styles-->
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <link href="assets/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#/">
+                            AngularMovies
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#/movies">Movies</a></li>
+                            <li><a href="#/genres">Genres</a></li>
+                            <li><a href="#/favorites">Favorites</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right col-xs-5 col-sm-3" ng-controller="SearchCtrl as search">
+                            <li class="pull-right">
+                                <form class="input-group" style="padding-top:8px" ng-submit="search.find()">
+                                    <input type="text" class="form-control" placeholder="Search for..." ng-model="search.expression">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" ng-click="search.find()">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                        </button>
+                                    </span>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <div class="container-fluid" ng-view></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Basic libraries -->
+    <script src="assets/libs/jquery/jquery-1.11.2.min.js"></script>
+    <script src="assets/libs/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/libs/linq/linq.min.js"></script>
+
+    <script src="assets/libs/angularjs/angular.min.js"></script>
+    <script src="assets/libs/angularjs/angular-resource.min.js"></script>
+    <script src="assets/libs/angularjs/angular-route.min.js"></script>
+    <script src="assets/libs/angularjs/ng-table.min.js"></script>
+
+    <!-- Angular app -->
+    <script src="app/app.js"></script>
+    <script src="app/config/app.config.js"></script>
+    <script src="app/config/app.routes.js"></script>
+
+    <!-- Angular modules -->
+    <script src="app/common/services/apiService.js"></script>
+    <script src="app/common/directives/directives.js"></script>
+    <script src="app/common/filters/filters.js"></script>
+    <script src="app/common/controllers/tabsController.js"></script>
+
+    <script src="app/components/movie/movieListDirective.js"></script>
+    <script src="app/components/movie/movieService.js"></script>
+    <script src="app/components/movie/movieControllers.js"></script>
+    <script src="app/components/favorite/favoriteController.js"></script>
+    <script src="app/components/genre/genreService.js"></script>
+    <script src="app/components/genre/genreControllers.js"></script>
+    <script src="app/components/search/searchService.js"></script>
+    <script src="app/components/search/searchController.js"></script>
+</body>
+</html>

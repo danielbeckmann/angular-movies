@@ -1,0 +1,71 @@
+﻿<div class="row clearfix">
+    <div class="col-md-3">
+        <a ng-href="{{movie.data.poster_path | image:'original'}}" href="#" target="_blank"><img ng-src="{{movie.data.poster_path | image:'w185'}}" class="margin-top-20"></a>
+    </div>
+    <div class="col-md-7">
+        <h1>{{movie.data.title}} <small>({{movie.data.release_date | date:'yyyy'}})</small></h1>
+        <div>
+            <span>{{movie.data.vote_average | rating}} {{movie.data.vote_average}}/10 ({{movie.data.vote_count}} votes)</span>
+            <button class="btn btn-default btn-xs" style="margin-left:15px" ng-class="{favorite: movie.isFavorite()}" type="button" ng-click="movie.addFavorite()">
+                <span aria-hidden="true" class="glyphicon glyphicon-heart" ng-class="{favorite: movie.isFavorite()}"></span> Favorite
+            </button>
+        </div>
+    </div>
+    <div class="col-md-7 margin-top-10">
+        <dl>
+            <dt>Overview</dt>
+            <dd>{{movie.data.overview}}</dd>
+            <dt ng-show="movie.data.tagline">Tagline</dt>
+            <dd ng-show="movie.data.tagline">{{movie.data.tagline}}</dd>
+        </dl>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-12 margin-top-20" ng-controller="tabsController as tab">
+        <ul class="nav nav-tabs">
+            <li ng-class="{ active:tab.isSet(1) }" ng-show="movie.cast" role="presentation" ><a href="" ng-click="tab.setTab(1)">Cast</a></li>
+            <li ng-class="{ active:tab.isSet(2) }" ng-show="movie.trailer" role="presentation"><a href="" ng-click="tab.setTab(2)">Trailer</a></li>
+            <li ng-class="{ active:tab.isSet(3) }" ng-show="movie.reviews.length > 0" role="presentation"><a href="" ng-click="tab.setTab(3)">Reviews</a></li>
+        </ul>
+        <div ng-show="tab.isSet(1)">
+            <div class="col-md-3 margin-top-15" ng-repeat="actor in movie.cast">
+                <div class="media-left">
+                    <img class="media-object" ng-src="{{actor.profile_path | image:'w45'}}" height="60">
+                </div>
+                <div class="media-body">
+                    <div class="media-heading bold">{{actor.name}}</div>
+                    <div>as {{actor.character}}</div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="tab.isSet(2)">
+            <div class="margin-top-15 text-center">
+                <iframe width="560" height="315" ng-src="{{movie.trailer}}" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div ng-show="tab.isSet(3)">
+            <div class="margin-top-15" ng-repeat="review in movie.reviews">
+                <blockquote style="font-size:1em">
+                    <div class="bold">{{review.author}}</div><br />
+                    <em>{{review.content}}</em>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row clearfix" ng-show="movie.similar.length > 0">
+    <div class="col-md-12 margin-top-30">
+        <div class="panel panel-default">
+            <div class="panel-heading">Similar Movies</div>
+            <div class="panel-body">
+                <div class="col-md-2" style="text-align:center" ng-repeat="m in movie.similar" ng-show="m.poster_path">
+                    <a href="#/movies/{{m.id}}">
+                        <img ng-src="{{m.poster_path | image:'w90'}}">
+                        <div style="padding:0.5em 1em">{{m.title}}</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<loading-indicator loading="movie.isLoading"></loading-indicator>
