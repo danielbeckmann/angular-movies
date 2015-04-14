@@ -127,7 +127,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.md" />
     <Content Include="assets\libs\angularjs\angular-resource.min.js.map">
       <DependentUpon>angular-resource.js</DependentUpon>
     </Content>
