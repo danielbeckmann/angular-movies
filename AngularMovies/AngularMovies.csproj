@@ -120,6 +120,8 @@
     <Content Include="assets\libs\linq\linq.min.js">
       <DependentUpon>linq.js</DependentUpon>
     </Content>
+    <Content Include="assets\libs\toastr\toastr.min.css" />
+    <Content Include="assets\libs\toastr\toastr.min.js" />
     <Content Include="index.html" />
     <Content Include="Web.config" />
   </ItemGroup>

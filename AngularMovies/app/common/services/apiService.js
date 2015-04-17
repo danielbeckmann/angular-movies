@@ -33,6 +33,10 @@
             params = params || {};
             params.api_key = api_key;
 
+            if (api_key === '') {
+                toastr.error('Api key is missing. Please check the README file.');
+            }
+
             var url = base_url + action;
             return $http.get(url, { cache: true, params: params });
         }
