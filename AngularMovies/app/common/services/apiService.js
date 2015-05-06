@@ -3,13 +3,12 @@
 
     var app = angular.module('common');
 
-    app.factory('apiService', ['$http', apiService]);
-    function apiService ($http) {
+    app.factory('apiService', ['$http', 'apiKey', apiService]);
+    function apiService($http, apiKey) {
         var base_url = 'http://api.themoviedb.org/3/';
         var image_base_url = 'http://image.tmdb.org/t/p/';
 
-        // Enter your api key here (Obtain key at: https://www.themoviedb.org/documentation/api)
-        var api_key = '';
+        var api_key = apiKey;
 
         // Loads the api configuration
         var loadConfiguration = function () {
